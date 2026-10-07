@@ -4,17 +4,25 @@ A static, responsive single-page website for **ShareMate: A Socially Connected S
 
 ## Preview
 
-Run `python3 -m http.server 8000` in this directory and open `http://localhost:8000/`.
+Run the following command in this directory:
 
-## Add verified research materials
+```sh
+python3 -m http.server 8000
+```
 
-No ShareMate documents, photos, dates, names, supervisor details, team email, or implementation notes were present in the supplied workspace. The site marks those details as pending. Do not replace them with guesses.
+Then open `http://localhost:8000/`.
 
-1. Copy verified documents without changing their contents into `public/documents/` and verified presentations into `public/presentations/`.
-2. Edit the corresponding `file: null` entry in `src/main.js` to use its **relative** path, for example `public/documents/research-paper.pdf`. Keep each report matched to its student ID. If a PDF and original PowerPoint are available, set `file` to the PDF and `downloadFile` to the PowerPoint path.
-3. Update academic content and dates in `index.html` and `src/main.js` from the approved research materials. Set the team email as the `mailto:` recipient in the contact handler once confirmed.
-4. Replace the conceptual architecture illustration in the methodology section with the actual diagram if available.
+## Research materials and downloads
 
-Suggested filenames are `topic-assessment.pdf`, `research-paper.pdf`, `individual-report-IT22054340.pdf`, `individual-report-IT22088864.pdf`, `individual-report-IT22215956.pdf`, `individual-report-IT22298058.pdf`, and `final-report.pdf`. For presentations: `proposal-presentation.pdf`, `progress-presentation-1.pdf`, `progress-presentation-2.pdf`, and `final-presentation.pdf`.
+The eleven supplied PDFs are stored in `public/documents/` and `public/presentations/`. Each document and presentation card links to its corresponding file using a relative path, so visitors can view or download it at the domain root or under a GitHub Pages repository subpath.
 
-Until a file path is supplied, its card displays **Coming Soon** and has no broken link. File paths are relative, so they work both at a domain root and at a GitHub Pages repository subpath. Use GitHub Pages **Deploy from a branch**, with this repository root as the publishing folder.
+**Source-file limitation:** All eleven PDFs supplied under different filenames are byte-for-byte identical. The content is a 14-page Topic Assessment Form, even in files named as reports or presentations. The website discloses this beside the download cards. Replace each file with its distinct approved original when available.
+
+To update the materials:
+
+1. Replace the corresponding PDF in `public/documents/` or `public/presentations/` without changing its filename, or update its relative path in `src/main.js` if the filename changes. Keep each individual report matched to its student ID. If a PDF and original PowerPoint are available, set `file` to the PDF and `downloadFile` to the PowerPoint path.
+2. Update the disclosure in `index.html` once the PDFs are distinct and verified.
+3. Update academic content and dates in `index.html` and `src/main.js` from approved research materials. Set the team email as the `mailto:` recipient in the contact handler once confirmed.
+4. Replace the conceptual architecture illustration in the methodology section with the approved system architecture diagram when available.
+
+Names, supervisor details, team email, dates, and implementation notes remain pending where they have not been verified. Use GitHub Pages **Deploy from a branch**, with this repository root as the publishing folder.

@@ -1,20 +1,20 @@
-// Verified source files should be placed under public/ and entered here.
-// A null file deliberately renders Coming Soon instead of a broken link.
+// Source PDFs are stored under public/ so relative links work on GitHub Pages.
+// Replace these files when distinct final reports and presentations are supplied.
 const documents = [
-  { title: 'Topic Assessment', file: null, type: 'Assessment' },
-  { title: 'Research Paper', file: null, type: 'Paper' },
-  { title: 'Individual Report - IT22054340', file: null, type: 'Individual report' },
-  { title: 'Individual Report - IT22088864', file: null, type: 'Individual report' },
-  { title: 'Individual Report - IT22215956', file: null, type: 'Individual report' },
-  { title: 'Individual Report - IT22298058', file: null, type: 'Individual report' },
-  { title: 'Final Report', file: null, type: 'Report' },
+  { title: 'Topic Assessment', file: 'public/documents/topic-assessment.pdf', type: 'Assessment' },
+  { title: 'Research Paper', file: 'public/documents/research-paper.pdf', type: 'Paper' },
+  { title: 'Individual Report - IT22054340', file: 'public/documents/individual-report-IT22054340.pdf', type: 'Individual report' },
+  { title: 'Individual Report - IT22088864', file: 'public/documents/individual-report-IT22088864.pdf', type: 'Individual report' },
+  { title: 'Individual Report - IT22215956', file: 'public/documents/individual-report-IT22215956.pdf', type: 'Individual report' },
+  { title: 'Individual Report - IT22298058', file: 'public/documents/individual-report-IT22298058.pdf', type: 'Individual report' },
+  { title: 'Final Report', file: 'public/documents/final-report.pdf', type: 'Report' },
 ];
 
 const presentations = [
-  { title: 'Proposal Presentation', file: null, type: 'Presentation' },
-  { title: 'Progress Presentation I', file: null, type: 'Presentation' },
-  { title: 'Progress Presentation II', file: null, type: 'Presentation' },
-  { title: 'Final Presentation', file: null, type: 'Presentation' },
+  { title: 'Proposal Presentation', file: 'public/presentations/proposal-presentation.pdf', type: 'Presentation' },
+  { title: 'Progress Presentation I', file: 'public/presentations/progress-presentation-1.pdf', type: 'Presentation' },
+  { title: 'Progress Presentation II', file: 'public/presentations/progress-presentation-2.pdf', type: 'Presentation' },
+  { title: 'Final Presentation', file: 'public/presentations/final-presentation.pdf', type: 'Presentation' },
 ];
 
 const milestones = [
@@ -106,14 +106,20 @@ menuToggle.addEventListener('click', () => {
   menuToggle.setAttribute('aria-expanded', String(open));
   menuToggle.innerHTML = open ? '× <span>Close</span>' : '☰ <span>Menu</span>';
 });
-document.querySelectorAll('.submenu-toggle').forEach(button => button.addEventListener('click', () => {
-  const open = button.closest('.nav-group').classList.toggle('open');
-  button.setAttribute('aria-expanded', String(open));
-}));
-nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
-  if (mobileQuery.matches) closeMenu();
-}));
-document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(); });
+document.querySelectorAll('.submenu-toggle').forEach(button =>
+  button.addEventListener('click', () => {
+    const open = button.closest('.nav-group').classList.toggle('open');
+    button.setAttribute('aria-expanded', String(open));
+  })
+);
+nav.querySelectorAll('a').forEach(link =>
+  link.addEventListener('click', () => {
+    if (mobileQuery.matches) closeMenu();
+  })
+);
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape') closeMenu();
+});
 document.addEventListener('click', event => {
   if (mobileQuery.matches && nav.classList.contains('open') && !navbar.contains(event.target)) closeMenu();
 });
@@ -134,7 +140,10 @@ form.addEventListener('submit', event => {
 document.getElementById('year').textContent = new Date().getFullYear();
 if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const observer = new IntersectionObserver(entries => entries.forEach(entry => {
-    if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
   }), { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
   document.querySelectorAll('.reveal').forEach(element => observer.observe(element));
 } else {
