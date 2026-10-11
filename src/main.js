@@ -1,5 +1,4 @@
-// Source PDFs are stored under public/ so relative links work on GitHub Pages.
-// Replace these files when distinct final reports and presentations are supplied.
+// Research files are stored under public/ so relative links work on GitHub Pages.
 const documents = [
   { title: 'Topic Assessment', file: 'public/documents/topic-assessment.pdf', type: 'Assessment' },
   { title: 'Research Paper', file: 'public/documents/research-paper.pdf', type: 'Paper' },
@@ -7,14 +6,14 @@ const documents = [
   { title: 'Individual Report - IT22088864', file: 'public/documents/individual-report-IT22088864.pdf', type: 'Individual report' },
   { title: 'Individual Report - IT22215956', file: 'public/documents/individual-report-IT22215956.pdf', type: 'Individual report' },
   { title: 'Individual Report - IT22298058', file: 'public/documents/individual-report-IT22298058.pdf', type: 'Individual report' },
-  { title: 'Final Report', file: 'public/documents/final-report.pdf', type: 'Report' },
+  { title: 'Final Report', type: 'Report' },
 ];
 
 const presentations = [
-  { title: 'Proposal Presentation', file: 'public/presentations/proposal-presentation.pdf', type: 'Presentation' },
-  { title: 'Progress Presentation I', file: 'public/presentations/progress-presentation-1.pdf', type: 'Presentation' },
-  { title: 'Progress Presentation II', file: 'public/presentations/progress-presentation-2.pdf', type: 'Presentation' },
-  { title: 'Final Presentation', file: 'public/presentations/final-presentation.pdf', type: 'Presentation' },
+  { title: 'Proposal Presentation', file: 'public/presentations/proposal-presentation.pptx', type: 'PowerPoint presentation' },
+  { title: 'Progress Presentation I', file: 'public/presentations/progress-presentation-1.pptx', type: 'PowerPoint presentation' },
+  { title: 'Progress Presentation II', file: 'public/presentations/progress-presentation-2.pptx', type: 'PowerPoint presentation' },
+  { title: 'Final Presentation', type: 'PowerPoint presentation' },
 ];
 
 const milestones = [
@@ -26,7 +25,12 @@ const milestones = [
   ['Final Presentation', 'Project demonstration and final review'],
 ];
 
-const studentIds = ['IT22054340', 'IT22088864', 'IT22215956', 'IT22298058'];
+const students = [
+  { role: 'Group Leader', name: 'IMSV Illankoon', id: 'IT22054340', component: 'FriendZone LiveTransit Share Engine', image: 'public/images/student-IT22054340.png' },
+  { role: 'Group Member', name: 'Kulasooriya WMP', id: 'IT22088864', component: 'Private Vehicle Share Engine', image: 'public/images/student-IT22088864.png' },
+  { role: 'Group Member', name: 'Vitharana MP', id: 'IT22215956', component: 'Academic Note Intelligence Engine', image: 'public/images/student-IT22215956.jpeg' },
+  { role: 'Group Member', name: 'Dayananda STPTC', id: 'IT22298058', component: 'Shared Grocery Shopping & Delivery Module', image: 'public/images/student-IT22298058.png' },
+];
 
 function renderDownloads(targetId, items) {
   const list = document.getElementById(targetId);
@@ -55,7 +59,7 @@ function renderDownloads(targetId, items) {
       view.href = item.file;
       view.target = '_blank';
       view.rel = 'noopener noreferrer';
-      view.textContent = 'View';
+      view.textContent = item.file.endsWith('.pptx') ? 'Open' : 'View';
       const download = document.createElement('a');
       download.className = 'file-button download';
       download.href = item.downloadFile || item.file;
@@ -77,11 +81,11 @@ renderDownloads('documents-list', documents);
 renderDownloads('presentations-list', presentations);
 
 document.getElementById('timeline').innerHTML = milestones.map(([title, description], index) => `
-  <article class="timeline-item reveal"><span class="timeline-dot"></span><div class="timeline-card"><div class="timeline-meta"><span>Milestone ${String(index + 1).padStart(2, '0')}</span><span class="status-pill">Date to be confirmed</span></div><h3>${title}</h3><p>${description}. Add the verified assessment date when available.</p></div></article>
+  <article class="timeline-item reveal"><span class="timeline-dot"></span><div class="timeline-card"><div class="timeline-meta"><span>Milestone ${String(index + 1).padStart(2, '0')}</span><span class="status-pill">${index < 4 ? 'Completed' : 'Date to be confirmed'}</span></div><h3>${title}</h3><p>${description}. Add the verified assessment date when available.</p></div></article>
 `).join('');
 
-document.getElementById('team-list').innerHTML = studentIds.map((id, index) => `
-  <article class="team-card reveal"><div class="avatar">${String(index + 1).padStart(2, '0')}</div><span class="role-tag">Student researcher</span><h3>Name to be confirmed</h3><strong class="student-id">${id}</strong><p>Research component and role to be confirmed from ShareMate documents.</p></article>
+document.getElementById('team-list').innerHTML = students.map(({ role, name, id, component, image }) => `
+  <article class="team-card reveal"><img class="avatar" src="${image}" alt="Portrait of ${name}" width="88" height="88" loading="lazy"><span class="role-tag">${role}</span><h3>${name}</h3><strong class="student-id">${id}</strong><p>${component}</p></article>
 `).join('');
 
 const navbar = document.getElementById('navbar');

@@ -14,15 +14,13 @@ Then open `http://localhost:8000/`.
 
 ## Research materials and downloads
 
-The eleven supplied PDFs are stored in `public/documents/` and `public/presentations/`. Each document and presentation card links to its corresponding file using a relative path, so visitors can view or download it at the domain root or under a GitHub Pages repository subpath.
-
-**Source-file limitation:** All eleven PDFs supplied under different filenames are byte-for-byte identical. The content is a 14-page Topic Assessment Form, even in files named as reports or presentations. The website discloses this beside the download cards. Replace each file with its distinct approved original when available.
+Research PDFs are stored in `public/documents/`, and the available PowerPoint decks are stored in `public/presentations/`. Each card uses a relative path so its file works at the domain root or under a GitHub Pages repository subpath. The final presentation is shown as coming soon until its file is added.
 
 To update the materials:
 
-1. Replace the corresponding PDF in `public/documents/` or `public/presentations/` without changing its filename, or update its relative path in `src/main.js` if the filename changes. Keep each individual report matched to its student ID. If a PDF and original PowerPoint are available, set `file` to the PDF and `downloadFile` to the PowerPoint path.
-2. Update the disclosure in `index.html` once the PDFs are distinct and verified.
+1. Replace a document PDF in `public/documents/` or a presentation PowerPoint in `public/presentations/` without changing its filename, or update its relative path in `src/main.js` if the filename changes. Keep each individual report matched to its student ID. Add the final presentation file and its path in `src/main.js` when available.
+2. Update the download note in `index.html` when the final presentation is added.
 3. Update academic content and dates in `index.html` and `src/main.js` from approved research materials. Set the team email as the `mailto:` recipient in the contact handler once confirmed.
 4. Replace the conceptual architecture illustration in the methodology section with the approved system architecture diagram when available.
 
-Names, supervisor details, team email, dates, and implementation notes remain pending where they have not been verified. Use GitHub Pages **Deploy from a branch**, with this repository root as the publishing folder.
+Team email, dates, and implementation notes remain pending where they have not been verified. Use GitHub Pages **Deploy from a branch**, with this repository root as the publishing folder.
