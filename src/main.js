@@ -10,9 +10,9 @@ const documents = [
 ];
 
 const presentations = [
-  { title: 'Proposal Presentation', file: 'public/presentations/proposal-presentation.pptx', type: 'PowerPoint presentation' },
-  { title: 'Progress Presentation I', file: 'public/presentations/progress-presentation-1.pptx', type: 'PowerPoint presentation' },
-  { title: 'Progress Presentation II', file: 'public/presentations/progress-presentation-2.pptx', type: 'PowerPoint presentation' },
+  { title: 'Proposal Presentation', file: 'https://github.com/svsachi/ShareMate-Website/releases/download/presentation-decks-2026/proposal-presentation.pptx', type: 'PowerPoint presentation' },
+  { title: 'Progress Presentation I', file: 'https://github.com/svsachi/ShareMate-Website/releases/download/presentation-decks-2026/progress-presentation-1.pptx', type: 'PowerPoint presentation' },
+  { title: 'Progress Presentation II', file: 'https://github.com/svsachi/ShareMate-Website/releases/download/presentation-decks-2026/progress-presentation-2.pptx', type: 'PowerPoint presentation' },
   { title: 'Final Presentation', type: 'PowerPoint presentation' },
 ];
 
@@ -53,7 +53,7 @@ function renderDownloads(targetId, items) {
     const actions = document.createElement('div');
     actions.className = 'file-actions';
     if (item.file) {
-      // Relative URLs work at the repository root and under a GitHub Pages subpath.
+      // Document URLs are relative; presentation URLs point to GitHub release assets.
       const view = document.createElement('a');
       view.className = 'file-button view';
       view.href = item.file;
